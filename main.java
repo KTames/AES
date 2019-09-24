@@ -7,7 +7,7 @@ import java.util.Base64;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 
-public class SecretKey {
+public class main {
 
     private static SecretKeySpec secretKey;
     private static byte[] key;
@@ -38,10 +38,39 @@ public class SecretKey {
         }
         return null;
     }
+    public static String decrypt(String strToDecrypt, String secret)
+    {
+        try
+        {
+            setKey(secret);
+            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING");
+            cipher.init(Cipher.DECRYPT_MODE, secretKey);
+            return new String(cipher.doFinal(Base64.getDecoder().decode(strToDecrypt)));
+        }
+        catch (Exception e)
+        {
+            System.out.println("Error while decrypting: " + e.toString());
+        }
+        return null;
+    }
+    public static void main(String[] args){
+        
+        String key = "";
+        char[] alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
+        char[] numbers = "0123456789".toCharArray();
+        
+        for(int letra = 0; letra<=alphabet.length; letra++){
+            for(int numero = 0; numero<numbers.length; numero++){
+                key = "29dh120" + alphabet[letra] + "dk1" + numero + "3";
+                
+                final String secretKey = key;
 
-    
-
-    public static void main(String[] args) {
-
+                String encryptedString = "xZwM7BWIpSjYyGFr9rhpEa+cYVtACW7yQKmyN6OYSCv0ZEg9jWbc6lKzzCxRSSIvOvlimQZBMZOYnOwiA9yy3YU8zk4abFSItoW6Wj0ufQ0=";
+                String decryptedString = decrypt(encryptedString, secretKey);
+                System.out.println(decryptedString);
+                System.out.println(alphabet[letra]);
+                System.out.println(numero);
+            }
+        }
     }
 }
