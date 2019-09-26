@@ -47,4 +47,5 @@ public class Util {
             output[charPosition] = charactersCopy[randomIndex];
             charactersCopy[randomIndex] = charactersCopy[length];
         }
+    }
 }
