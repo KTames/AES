@@ -2,10 +2,13 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
-import java.util.Base64;
 
+//import java.util.Base64;
+import javax.xml.bind.DatatypeConverter;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
+
+import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 
 public class AES {
 
@@ -33,7 +36,12 @@ public class AES {
             setKey(secret);
             Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING");
             cipher.init(Cipher.DECRYPT_MODE, secretKey);
+<<<<<<< HEAD:AES.java
             return new String(cipher.doFinal(Base64.getDecoder().decode(strToDecrypt)));
+=======
+            //return new String(cipher.doFinal(Base64.getDecoder().decode(strToDecrypt)));
+            return new String(cipher.doFinal(DatatypeConverter.parseBase64Binary(strToDecrypt)));
+>>>>>>> Steven:src/AES.java
         } catch (Exception e) {
             return "";
         }        
@@ -41,3 +49,4 @@ public class AES {
     
 
 }
+
