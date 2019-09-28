@@ -41,10 +41,13 @@ public class Util {
 
         String[] output = new String[length];
         int originalLength = length;
-        //empieza a modificar los campos de los elementos, para hacerlos random
+        // empieza a modificar los campos de los elementos, para hacerlos random
         for (int charPosition = 0; charPosition < originalLength; charPosition++) {
             int randomIndex = random.nextInt(length--);
             output[charPosition] = charactersCopy[randomIndex];
             charactersCopy[randomIndex] = charactersCopy[length];
         }
+
+        return output;
+    }
 }
